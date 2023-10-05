@@ -81,6 +81,7 @@ class _TodoListState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset('assets/images/gecko.gif'),
             ElevatedButton(
               onPressed: () {
                 toggleTheme(context);
