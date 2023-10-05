@@ -5,7 +5,7 @@ ThemeData lightTheme = ThemeData(
   primaryColor: Colors.deepOrange, // The main color for your app
   scaffoldBackgroundColor: Colors.white, // Background color for the scaffold
   appBarTheme: const AppBarTheme(
-    color: Colors.deepOrange, // Background color of app bar
+      color: Colors.deepOrange, // Background color of app bar
     iconTheme: IconThemeData(color: Colors.white), // Color of icons in app bar
     titleTextStyle: TextStyle(
       color: Colors.white, // Default text color for the body
@@ -41,17 +41,21 @@ ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Colors.deepPurple,
   scaffoldBackgroundColor: Colors.grey[900],
-  appBarTheme: AppBarTheme(
-    color: Colors.deepPurple,
-    iconTheme: IconThemeData(color: Colors.white),
+    appBarTheme: const AppBarTheme(
+      color: Colors.deepPurple, // Background color of app bar
+    iconTheme: IconThemeData(color: Colors.white), // Color of icons in app bar
+    titleTextStyle: TextStyle(
+      color: Colors.white, // Default text color for the body
+      fontSize: 6.0,
+      fontWeight: FontWeight.w700,
+    ),
   ),
   textTheme: TextTheme(
     bodyText1: TextStyle(
       color: Colors.white,
-      fontSize: 16.0,
+      fontSize: 6.0,
     ),
     // Define more text styles as needed
   ),
   // Add more theme properties as needed
 );
-

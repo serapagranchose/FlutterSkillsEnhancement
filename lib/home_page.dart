@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_skills_enhancement/theme.dart';
-import 'package:flutter_skills_enhancement/main.dart';
+import 'package:adaptive_theme/adaptive_theme.dart';
 
 class Todo {
   Todo({required this.name, required this.completed});
@@ -19,8 +18,19 @@ class MyHomePage extends StatefulWidget {
 class _TodoListState extends State<MyHomePage> {
   final List<Todo> _todos = <Todo>[];
   final TextEditingController _textFieldController = TextEditingController();
-  // Add your state variables and methods here
-  Future<void> _displayDialog() async {
+
+  void _addTodoItem(String name) {
+    setState(() {
+      _todos.add(Todo(name: name, completed: false));
+    });
+    _textFieldController.clear();
+  }
+
+  void toggleTheme(BuildContext context) {
+  AdaptiveTheme.of(context).toggleThemeMode();
+}
+
+  Future<void> _displayDialog(BuildContext context) async {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -60,12 +70,6 @@ class _TodoListState extends State<MyHomePage> {
       },
     );
   }
-  void _addTodoItem(String name) {
-    setState(() {
-      _todos.add(Todo(name: name, completed: false));
-    });
-    _textFieldController.clear();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,28 +80,19 @@ class _TodoListState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(isDarkTheme.toString()),
-            Switch(
-              value: isDarkTheme,
-              onChanged: (value) {
-                setState(() {
-                  isDarkTheme = value;
-                  // Set the theme here based on isDarkTheme
-                  final theme = value ? darkTheme : lightTheme;
-                  // Update the app's theme
-                  // TodoApp.setTheme(context, theme);
-                });
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                toggleTheme(context);
               },
-            ),
-            // Add other widgets in the body as needed
+              child: Text("changer theme")
+            )
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Add your logic here to handle the button press
-          _displayDialog(); // Example function to display a dialog
+          _displayDialog(context); // Pass the context to the dialog function
         },
         tooltip: 'Add a Todo',
         child: const Icon(Icons.add),

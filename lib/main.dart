@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_skills_enhancement/theme.dart';
-import 'package:flutter_skills_enhancement/home_page.dart';
+import 'package:adaptive_theme/adaptive_theme.dart';
 
-bool isDarkTheme = false; // Initially set to light theme
+import 'package:flutter_skills_enhancement/home_page.dart';
+import 'package:flutter_skills_enhancement/theme.dart';
 
 void main() {
-  runApp(const TodoApp());
+  runApp(TodoApp());
 }
 
 class TodoApp extends StatelessWidget {
-  const TodoApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: isDarkTheme ? darkTheme : lightTheme,
-      home: const MyHomePage(title: 'Le bac à sable de Séra'),
+    return AdaptiveTheme(
+      light: lightTheme,
+      dark: darkTheme,
+      initial: AdaptiveThemeMode.light,
+      builder: (theme, darkTheme) => MaterialApp(
+        title: 'Flutter Demo',
+        theme: theme,
+        darkTheme: darkTheme,
+        home: const MyHomePage(
+          title: 'Le bac à sable de Séra',
+        ),
+      ),
     );
   }
 }
-
-// Rest of your code in main.dart
